@@ -665,13 +665,13 @@ impl Decoder {
         }
 
         match Version::try_from(&buffer[0..8]) {
-            Ok(version) if version == Version::RTSP20 => {
+            Ok(version) /* if version == Version::RTSP20*/ => {
                 self.builder.version(version);
                 self.state = DecodeState::Header;
                 *buffer = &buffer[10..];
                 Complete(())
             }
-            Ok(_) => Error(DecodeError::UnsupportedVersion),
+//            Ok(_) => Error(DecodeError::UnsupportedVersion),
             Err(error) => Error(error.into()),
         }
     }

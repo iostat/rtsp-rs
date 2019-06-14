@@ -17,37 +17,37 @@ use crate::status::StatusCode;
 use crate::version::Version;
 
 lazy_static! {
-    pub(crate) static ref BAD_REQUEST_RESPONSE: Response<BytesMut> =
+    pub static ref BAD_REQUEST_RESPONSE: Response<BytesMut> =
         Response::<()>::builder()
             .with_status_code(StatusCode::BadRequest)
             .with_body(BytesMut::new())
             .build()
             .expect("bad request response should not be invalid");
-    pub(crate) static ref CONTINUE_RESPONSE: Response<BytesMut> =
+    pub static ref CONTINUE_RESPONSE: Response<BytesMut> =
         Response::<()>::builder()
             .with_status_code(StatusCode::Continue)
             .with_body(BytesMut::new())
             .build()
             .expect("continue response should not be invalid");
-    pub(crate) static ref INTERNAL_SERVER_ERROR_RESPONSE: Response<BytesMut> =
+    pub static ref INTERNAL_SERVER_ERROR_RESPONSE: Response<BytesMut> =
         Response::<()>::builder()
             .with_status_code(StatusCode::InternalServerError)
             .with_body(BytesMut::new())
             .build()
             .expect("internal server error response should not be invalid");
-    pub(crate) static ref NOT_IMPLEMENTED_RESPONSE: Response<BytesMut> =
+    pub static ref NOT_IMPLEMENTED_RESPONSE: Response<BytesMut> =
         Response::<()>::builder()
             .with_status_code(StatusCode::NotImplemented)
             .with_body(BytesMut::new())
             .build()
             .expect("not implemented response should not be invalid");
-    pub(crate) static ref REQUEST_MESSAGE_BODY_TOO_LARGE_RESPONSE: Response<BytesMut> =
+    pub static ref REQUEST_MESSAGE_BODY_TOO_LARGE_RESPONSE: Response<BytesMut> =
         Response::<()>::builder()
             .with_status_code(StatusCode::RequestMessageBodyTooLarge)
             .with_body(BytesMut::new())
             .build()
             .expect("request message body too large response should not be invalid");
-    pub(crate) static ref REQUEST_URI_TOO_LONG_RESPONSE: Response<BytesMut> =
+    pub static ref REQUEST_URI_TOO_LONG_RESPONSE: Response<BytesMut> =
         Response::<()>::builder()
             .with_status_code(StatusCode::RequestURITooLong)
             .with_body(BytesMut::new())
