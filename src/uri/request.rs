@@ -43,7 +43,8 @@ use uriparse::{
 
 use crate::uri::{
     Authority, AuthorityError, Fragment, Host, Password, Path, PathError, Query, QueryError,
-    Scheme, UnregisteredScheme, SchemeError, Username, RTSPS_DEFAULT_PORT, RTSPU_DEFAULT_PORT, RTSP_DEFAULT_PORT,
+    Scheme, SchemeError, UnregisteredScheme, Username, RTSPS_DEFAULT_PORT, RTSPU_DEFAULT_PORT,
+    RTSP_DEFAULT_PORT,
 };
 
 lazy_static! {
@@ -994,7 +995,7 @@ impl<'uri> TryFrom<URIReference<'uri>> for URI {
             if segments.len() != 1 || segments[0].as_str() != "*" || value.has_query() {
                 // AP2 uses extensions to RTSP that basically embeds HTTP requests, so this needs
                 // to be allowed
-//                return Err(URIError::InvalidRelativeReference);
+                //                return Err(URIError::InvalidRelativeReference);
             } else {
                 return Ok(URI { components: None });
             }
@@ -1016,8 +1017,18 @@ impl<'uri> TryFrom<URIReference<'uri>> for URI {
         let (scheme, authority, path, query, _) = value.into_owned().into_parts();
         Ok(URI {
             components: Some(Components {
-                scheme: scheme.unwrap_or_else(|| Scheme::Unregistered(UnregisteredScheme::try_from("noscheme").unwrap())),//expect("expected a scheme"),
-                authority: authority.unwrap_or_else(|| Authority::from_parts(None as Option<&str>, None as Option<&str>, "", None as Option<u16>).unwrap()),//expect("expected an authority"),
+                scheme: scheme.unwrap_or_else(|| {
+                    Scheme::Unregistered(UnregisteredScheme::try_from("noscheme").unwrap())
+                }), //expect("expected a scheme"),
+                authority: authority.unwrap_or_else(|| {
+                    Authority::from_parts(
+                        None as Option<&str>,
+                        None as Option<&str>,
+                        "",
+                        None as Option<u16>,
+                    )
+                    .unwrap()
+                }), //expect("expected an authority"),
                 path,
                 query,
             }),
