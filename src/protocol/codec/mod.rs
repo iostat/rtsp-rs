@@ -69,15 +69,12 @@ impl Codec {
         match result {
             DecodeResult::Complete(request) => {
                 self.send_codec_event(CodecEvent::DecodingEnded);
-//                println!("decode_request_end: {:#?}", request.clone());
                 Ok(Some(Message::Request(request)))
             }
             DecodeResult::Incomplete => {
-//                println!("decode_request_incomplete");
                 Ok(None)
             }
             DecodeResult::Error(error) => {
-//                println!("decode_request_err: {:#?}", error.clone());
                 self.send_codec_event(CodecEvent::DecodingEnded);
                 Err(ProtocolError::DecodeError(error.into()))
             }
