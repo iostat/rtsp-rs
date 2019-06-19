@@ -71,9 +71,7 @@ impl Codec {
                 self.send_codec_event(CodecEvent::DecodingEnded);
                 Ok(Some(Message::Request(request)))
             }
-            DecodeResult::Incomplete => {
-                Ok(None)
-            }
+            DecodeResult::Incomplete => Ok(None),
             DecodeResult::Error(error) => {
                 self.send_codec_event(CodecEvent::DecodingEnded);
                 Err(ProtocolError::DecodeError(error.into()))
