@@ -510,9 +510,9 @@ impl<TBody> Builder<TBody> {
         };
         let body = self.body.ok_or(ResponseError::MissingBody)?;
 
-        if self.version != Version::RTSP20 {
-            return Err(ResponseError::UnsupportedVersion);
-        }
+//        if self.version != Version::RTSP20 {
+//            return Err(ResponseError::UnsupportedVersion);
+//        }
 
         Ok(Response {
             body,
