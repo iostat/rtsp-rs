@@ -56,7 +56,7 @@ lazy_static! {
 
     // TODO: As per specification, the response "SHOULD describe the reason for the refusal in the
     // message body".
-    pub(crate) static ref FORBIDDEN_RESPONSE: Response<BytesMut> =
+    pub static ref FORBIDDEN_RESPONSE: Response<BytesMut> =
         Response::<()>::builder()
             .with_status_code(StatusCode::Forbidden)
             .with_body(BytesMut::new())
@@ -64,7 +64,7 @@ lazy_static! {
             .expect("forbidden response should not be invalid");
     // TODO: As per specification, the "response SHOULD contain a message body describing why
     // that version is not supported and what other protocols are supported by that agent".
-    pub(crate) static ref VERSION_NOT_SUPPORTED_RESPONSE: Response<BytesMut> =
+    pub static ref VERSION_NOT_SUPPORTED_RESPONSE: Response<BytesMut> =
         Response::<()>::builder()
             .with_status_code(StatusCode::RTSPVersionNotSupported)
             .with_body(BytesMut::new())
