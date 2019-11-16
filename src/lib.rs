@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 #![feature(int_error_matching)]
 
 mod syntax;

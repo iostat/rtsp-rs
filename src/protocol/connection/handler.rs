@@ -312,7 +312,7 @@ mod test {
     impl Service<Request<BytesMut>> for DelayedTestService {
         type Response = Response<BytesMut>;
         type Error = io::Error;
-        type Future = Box<Future<Item = Self::Response, Error = Self::Error> + Send + 'static>;
+        type Future = Box<dyn Future<Item = Self::Response, Error = Self::Error> + Send + 'static>;
 
         fn call(&mut self, _: Request<BytesMut>) -> Self::Future {
             Box::new(
@@ -335,7 +335,7 @@ mod test {
     impl Service<Request<BytesMut>> for TestService {
         type Response = Response<BytesMut>;
         type Error = io::Error;
-        type Future = Box<Future<Item = Self::Response, Error = Self::Error> + Send + 'static>;
+        type Future = Box<dyn Future<Item = Self::Response, Error = Self::Error> + Send + 'static>;
 
         fn call(&mut self, _: Request<BytesMut>) -> Self::Future {
             Box::new(future::ok(
