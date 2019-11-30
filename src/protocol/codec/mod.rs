@@ -364,8 +364,8 @@ impl From<ResponseDecodeError> for DecodeError {
 #[cfg(test)]
 mod test {
     use bytes::BytesMut;
-    use futures::stream::Stream;
     use futures::channel::mpsc::unbounded;
+    use futures::stream::Stream;
     use std::convert::TryFrom;
     use tokio::runtime::Runtime;
     use tokio_util::codec::{Decoder, Encoder};
@@ -470,19 +470,19 @@ mod test {
             assert!(codec.decode(&mut buffer).is_ok());
         }
 
-//        let mut runtime = Runtime::new().unwrap();
-//        let events = runtime.block_on(rx_event.collect()).unwrap();
-//
-//        assert_eq!(
-//            events,
-//            vec![
-//                CodecEvent::EncodingStarted,
-//                CodecEvent::EncodingEnded,
-//                CodecEvent::DecodingStarted,
-//                CodecEvent::EncodingStarted,
-//                CodecEvent::EncodingEnded,
-//                CodecEvent::DecodingEnded,
-//            ]
-//        );
+        //        let mut runtime = Runtime::new().unwrap();
+        //        let events = runtime.block_on(rx_event.collect()).unwrap();
+        //
+        //        assert_eq!(
+        //            events,
+        //            vec![
+        //                CodecEvent::EncodingStarted,
+        //                CodecEvent::EncodingEnded,
+        //                CodecEvent::DecodingStarted,
+        //                CodecEvent::EncodingStarted,
+        //                CodecEvent::EncodingEnded,
+        //                CodecEvent::DecodingEnded,
+        //            ]
+        //        );
     }
 }
